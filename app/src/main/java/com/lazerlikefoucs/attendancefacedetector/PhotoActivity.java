@@ -123,12 +123,6 @@ public class PhotoActivity extends AppCompatActivity {
         }
         Python py = Python.getInstance();
 
-        Bitmap imp = image.getBitmapInternal();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        imp.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        byte[] byteArray = byteArrayOutputStream .toByteArray();
-        String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
         final PyObject pyObj = py.getModule("face");
         PyObject obj = pyObj.callAttr("main", encoded);
         PyObject obj2 = pyObj.callAttr("num");
