@@ -13,7 +13,7 @@ import io
 import face_recognition
 
 def main(data):
-    decoded_data = base64.b64decode(data)
+    decoded_data = base64.b64encode(data)
     np_data = np.fromstring(decoded_data, np.uint8)
     img = cv2.imdecode(np_data, cv2.IMREAD_UNCHANGED)
     
@@ -30,7 +30,7 @@ def main(data):
 
     buff = io.BytesIO()
     pil_im.save(buff, format="PNG")
-    img_str = base64.b64encode(buff.getvalue())
+    img_str = base64.b64decode(buff.getvalue())
     return ""+str(img_str,'utf-8')
 
 def num():
